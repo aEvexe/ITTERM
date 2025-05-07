@@ -3,7 +3,7 @@ const {Schema,model} = require('mongoose')
 const categorySchema = new Schema({
     name: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
     },
     parent_category_id: {
@@ -15,7 +15,7 @@ const categorySchema = new Schema({
         required: true
     }
   },
-  {versionKey: false}
+  {versionKey: false}, { strictPopulate: false }
 )
 
 module.exports = model("Category", categorySchema);

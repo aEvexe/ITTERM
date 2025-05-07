@@ -1,15 +1,24 @@
 const { sendErrorResponse } = require('../helpers/send_error_response');
 const Dict = require('../schemas/Dict');
+const dictValidate = require('../validation/dict.validation');
 
 const addDict = async (req, res) => {
     try {
-        const {term} = req.body
-        const newDict = await Dict.create({term, letter: term[0]});
-        res.status(201).send({message: "New term added", newDict})
+        const { error, value } = dictValidate(req.body);
+        if (error) {
+            return sendErrorResponse(error, res);  
+        }
+
+        const { term } = value;  
+        const newDict = await Dict.create({ term, letter: term[0] });
+
+        res.status(201).send({ message: "New term added", newDict });
     } catch (error) {
-        sendErrorResponse()
+        sendErrorResponse(error, res);  
     }
-}
+};
+
+module.exports = { addDict };
 
 const getAll = async (req, res) => {
     try {
@@ -46,9 +55,13 @@ const findByLetter = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { id } = req.params
-        const { name, author, price, year, email, } = req.body
-        const data = await Dict.findByIdAndUpdate({_id: id}, {name, author, price, year, email,}, { new: true })
+        const { error, value } = dictValidate(req.body);
+        if (error) {
+            return sendErrorResponse(error, res);  
+        }
+
+        const {id} = req.params
+        const data = await Dict.findByIdAndUpdate(id, value, { new: true })
         res.status(200).send({message: data})
     } catch (error) {
         sendErrorResponse()

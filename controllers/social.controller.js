@@ -1,10 +1,14 @@
 const { sendErrorResponse } = require('../helpers/send_error_response');
 const Social = require('../schemas/Social');
+const socialValidation = require("../validation/social.validate")
 
 const addSocial = async (req, res) => {
     try {
-        const data = req.body
-        const newSocail = await Social.create(data);
+        const {error, value} = socialValidation(req.body)
+        if(error){
+            return sendErrorResponse(error, res)
+        }
+        const newSocail = await Social.create(value);
         res.status(201).send({message: "New social added", newSocail})
     } catch (error) {
         sendErrorResponse()
@@ -33,9 +37,12 @@ const findById = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        const {error, value} = socialValidation(req.body)
+        if(error){
+            return sendErrorResponse(error, res)
+        }
         const { id } = req.params
-        const {social_name, social_icon_name} = req.body
-        const data = await Social.findByIdAndUpdate({_id: id}, {social_name, social_icon_name}, { new: true })
+        const data = await Social.findByIdAndUpdate(id, value, { new: true })
         res.status(200).send({message: data})
     } catch (error) {
         sendErrorResponse()

@@ -1,4 +1,4 @@
 {
     "PORT": 3000,
-    "dbUri": "mongodb+srv://superadmin:1234@cloud.g2cs5yb.mongodb.net/ittermin?retryWrites=true&w=majority&appName=Cloud"
+    "dbUri": "mongodb://localhost:27017/1234"
 }

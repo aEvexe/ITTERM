@@ -1,11 +1,15 @@
 const { sendErrorResponse } = require('../helpers/send_error_response');
 const Category = require('../schemas/Category');
 const Description = require('../schemas/Description');
+const descValidation = require('../validation/desc.validate')
 
 const addDesc = async (req, res) => {
     try {
-        const data = req.body
-        const newDesc = await Description.create(data);
+        const {error, value} = descValidation(req.body)
+        if(error){
+            return sendErrorResponse(error, res)
+        }
+        const newDesc = await Description.create(value);
         res.status(201).send({message: "New social added", newDesc})
     } catch (error) {
         sendErrorResponse()
@@ -34,9 +38,13 @@ const findById = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        const {error, value} = descValidation(req.body)
+        if(error){
+            return sendErrorResponse(error, res)
+        }
+
         const { id } = req.params
-        const {category_id, description} = req.body
-        const data = await Description.findByIdAndUpdate({_id: id}, {category_id, description}, { new: true })
+        const data = await Description.findByIdAndUpdate(id, value, { new: true })
         res.status(200).send({message: data})
     } catch (error) {
         sendErrorResponse()

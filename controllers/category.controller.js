@@ -1,10 +1,14 @@
 const { sendErrorResponse } = require('../helpers/send_error_response');
 const Category = require('../schemas/Category');
+const categoryValidation = require("../validation/category.validate")
 
 const addCategory = async (req, res) => {
     try {
-        const {name, parent_category_id, desc} = req.body
-        const newCategory = await Category.create({name, parent_category_id, desc});
+        const { error, value } = categoryValidation(req.body) 
+        if(error) {
+            return sendErrorResponse(error, res)
+        }
+        const newCategory = await Category.create(value);
         res.status(201).send({message: "New category added", newCategory})
     } catch (error) {
         sendErrorResponse()
@@ -33,9 +37,13 @@ const findById = async (req, res) => {
 
 const update = async (req, res) => {
     try {
+        const { error, value } = categoryValidation(req.body) 
+        if(error) {
+            return sendErrorResponse(error, res)
+        }
+
         const { id } = req.params
-        const {name, parent_category_id, desc}  = req.body
-        const data = await Category.findByIdAndUpdate({_id: id}, {name, parent_category_id, desc}, { new: true } )
+        const data = await Category.findByIdAndUpdate(id, value, { new: true } )
         res.status(200).send({message: data})
     } catch (error) {
         sendErrorResponse()
