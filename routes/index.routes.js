@@ -7,6 +7,9 @@ const synonymRouter = require("./synonym.routes")
 const authorRouter = require("./author.routes")
 const topicRouter = require("./topic.routes")
 const tagRouter = require("./tag.routes")
+const adminRouter = require("./admin.routes")
+const userRouter = require("./user.routes")
+const QARouter = require("./question.routes")
 const desc_topicRouter = require("./desc_topic.routes")
 
 router.use("/dict", dictRouter)
@@ -18,5 +21,8 @@ router.use("/authors", authorRouter)
 router.use("/topic", topicRouter)
 router.use("/desc_topic", desc_topicRouter)
 router.use("/tag", tagRouter)
+router.use("/admin", adminRouter)
+router.use("/user", userRouter)
+router.use("/QA", QARouter)
 
 module.exports = router
