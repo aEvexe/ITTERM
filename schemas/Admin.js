@@ -1,3 +1,4 @@
+const { boolean } = require('joi')
 const {model, Schema} = require('mongoose')
 
 const adminSchema = new Schema({
@@ -19,12 +20,12 @@ const adminSchema = new Schema({
         required: true,
     },
     is_active: {
-        type: String,
-        required: true,
+        type: Boolean,
+        default: false,
     },
     is_creator: {
-        type: String,
-        required: true,
+        type: Boolean,
+        default: false,
     },
     created_date: {
         type: String,

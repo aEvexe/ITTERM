@@ -5,7 +5,7 @@ const descQaValidation = require("../validation/desc_qa")
 const addDescQa = async (req, res) => {
     try {
         const { error, value } = descQaValidation(req.body) 
-        if(error) {
+        if(error) { 
             return sendErrorResponse(error, res)
         }
         const newDescQa = await DescQa.create(value);
