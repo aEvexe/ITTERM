@@ -17,7 +17,8 @@ module.exports = async (req, res, next) => {
             return res.status(401).send({message: "bearer not found"})
         }
 
-        const decodedPayload = jwt.verify(token, config.get("userTokenKey"));
+        // const decodedPayload = jwt.verify(token, config.get("userTokenKey"));
+        const decodedPayload = await jwtService.verifyAccessToken();
 
 
         req.userAuth = decodedPayload;

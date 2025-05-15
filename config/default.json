@@ -4,6 +4,23 @@
     "tokenKey": "MySecrectTokenKey",
     "tokenExpTime": "24h",
     "adminTokenKey": "MySecrectTokenKeyAdmin",
-    "userTokenKey": "MySecrectTokenKeyUser"
-    
+    "userTokenKey": "MySecrectTokenKeyUser",
+
+    "access_key":"accessTokenSecretKeysdfsdf",
+    "refresh_key":"accessTokenSecretKeysdfsdf",
+    "access_time":"15h",
+    "refresh_time":"15d",
+    "cookie_refresh_time": 1296000000,
+
+    "adminAccess_key": "accessAdminKeyJwt",
+    "adminRefresh_key": "accessAdminKeyJwt",
+    "adminAccess_time": "15h",
+    "adminRefresh_time": "15d",
+    "admin_cookie_refresh_time": 1296000000,
+
+    "userAccessKey": "userAccessKeyJwt",
+    "userRefreshKey": "userAccessKeyJwt", 
+    "userAccessTime": "1d", 
+    "userRefteshTime": "15d",
+    "user_cookie_refresh_time": 1296000000
 }

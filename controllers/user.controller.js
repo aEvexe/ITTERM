@@ -4,6 +4,7 @@ const userValidation = require("../validation/user.validate")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const jwtUserService = require('../service/jwt.user.service');
 
 const addUser = async (req, res) => {
     try {
@@ -83,11 +84,33 @@ const login = async (req, res) => {
             is_creator: user._is_creator
         }
 
-        const token = jwt.sign(payload, config.get("userTokenKey"), {
-            expiresIn: config.get("tokenExpTime")
+        const tokens = jwtUserService.generateTokens(payload)
+        user.refresh_token = tokens.refreshToken
+        await user.save()
+
+        res.cookie("refreshToken", tokens.refreshToken,{
+            httpOnly: true,
+            maxAge: config.get("user_cookie_refresh_time")
         })
 
         res.status(201).send({ message: "You entered, Welcome", id: user.id, token });
+    } catch (error) {
+        sendErrorResponse(error, res)
+    }
+}
+
+const logout = (req, res) => {
+    try {
+        const {refreshToken} = req.cookies
+        if(!refreshToken) {
+            res.status(400).send({message: "refreshToken not found"})
+        }
+
+        const user = User.findOneAndUpdate({refresh_token: refreshToken}, {refresh_token: ""}, {new: true})
+
+        res.clearCookie("refreshToken")
+        res.send({user})
+
     } catch (error) {
         sendErrorResponse(error, res)
     }
@@ -101,5 +124,6 @@ module.exports = {
     findById,
     update,
     remove,
-    login
+    login,
+    logout
 }

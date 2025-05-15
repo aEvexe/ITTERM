@@ -4,6 +4,8 @@ const adminValidation = require("../validation/admin.validate")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const jwtAdminService = require('../service/jwt.admin.service');
+const adminSelfGuard = require('../middleware/guards/admin-self.guard');
 
 
 const addAdmin = async (req, res) => {
@@ -83,16 +85,40 @@ const login = async (req, res) => {
 
         const payload = {
             id: admin._id,
-            email: admin._email,
-            is_active: admin._is_active,
-            is_creator: admin._is_creator
+            email: admin.email,
+            is_active: admin.is_active,
+            is_creator: admin.is_creator
         }
 
-        const token = jwt.sign(payload, config.get("adminTokenKey"), {
-            expiresIn: config.get("tokenExpTime")
+        const tokens = jwtAdminService.generateTokens(payload)
+        admin.refresh_token = tokens.refreshToken
+        await admin.save()
+
+        res.cookie("refresh_token", tokens.refreshToken, {
+            httpOnly: true,
+            maxAge: config.get("admin_cookie_refresh_time")
         })
 
-        res.status(201).send({ message: "You entered, Welcome", id: admin.id, token });
+        res.status(201).send({ message: "You entered, Welcome", id: admin.id, tokens });
+    } catch (error) {
+        sendErrorResponse(error, res)
+    }
+}
+
+const logout = (req, res) => {
+    try {
+        const {refreshToken} = req.cookies
+        if(!refreshToken){
+            return res.status(400).send({message: "no found cookie in refresh token"})
+        }
+
+        const admin = Admin.findOneAndUpdate({refresh_token: refreshToken}, {refresh_token: ""}, {new: true})
+        if(!admin) {
+            return res.status(400).send({message: "no found cookie in refresh token"})
+        }
+
+        res.clearCookie("refreshToken");
+        res.send({admin})
     } catch (error) {
         sendErrorResponse(error, res)
     }
@@ -106,5 +132,6 @@ module.exports = {
     findById,
     update,
     remove,
-    login
+    login,
+    logout
 }

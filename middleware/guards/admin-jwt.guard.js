@@ -16,7 +16,8 @@ module.exports = async (req, res, next) => {
       return res.status(401).send({ message: "Invalid token format" });
     }
 
-    const decodedPayload = jwt.verify(token, config.get("adminTokenKey"));
+    // const decodedPayload = jwt.verify(token, config.get("adminTokenKey"));
+    const decodedPayload = await jwtService.verifyAccessToken();
 
     req.admin = decodedPayload; 
     console.log("Authenticated admin:", req.admin);

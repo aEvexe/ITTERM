@@ -4,6 +4,8 @@ const { authorValidation } = require('../validation/author.validate');
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const jwtService = require('../service/jwt.service');
+
 
 const addAuthor = async (req, res) => {
     try {
@@ -101,15 +103,41 @@ const loginAuthor  = async (req, res) => {
             is_expert: author.is_expert
         }
 
-        const token = jwt.sign(payload, config.get("tokenKey"), {
-            expiresIn: config.get("tokenExpTime")
+        const tokens = jwtService.generateTokens(payload)
+        author.refresh_token = tokens.refreshToken
+        await author.save()
+
+        res.cookie("refreshToken", tokens.refreshToken,{
+            httpOnly: true,
+            maxAge: config.get("cookie_refresh_time")
         })
 
-        res.status(201).send({ message: "You entered, Welcome", id: author.id, token });
+        res.status(201).send({ message: "You entered, Welcome", id: author.id, accessToken: tokens.accesToken});
     } catch (error) {
         sendErrorResponse(error, res);
     }
 };
+
+const logout = async (req, res) =>{
+    try {
+        const {refreshToken} = req.cookies
+
+        if (!refreshToken){
+            return res.status(400).send({message: "no found cookie in refresh token"})
+        }
+
+        const author = await Author.findOneAndUpdate({refresh_token: refreshToken},{refresh_token: ""}, {new: true} )
+        if(!author) {
+            return res.status(400).send({message: "no found cookie in refresh token"})
+        }
+
+        res.clearCookie("refreshToken");
+        res.send({author})
+
+    } catch (error) {
+        sendErrorResponse(error, res)
+    }
+}
 
 module.exports = {
     addAuthor,
@@ -117,5 +145,6 @@ module.exports = {
     getAuthorById,
     updateAuthor,
     deleteAuthor,
-    loginAuthor
+    loginAuthor,
+    logout
 };

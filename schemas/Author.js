@@ -62,6 +62,9 @@ const authorSchema = new Schema({
         min: 2000,
         max: 2020,
     },
+    refresh_token:{
+        type: String,
+    }
 });
  
 module.exports = model("Author", authorSchema);

@@ -36,7 +36,9 @@ const adminSchema = new Schema({
         type: String,
         required: true,
     },
-
+    refresh_token: {
+        type: String
+    },
 })
 
 module.exports = model("Admin", adminSchema)

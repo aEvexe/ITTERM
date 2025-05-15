@@ -1,6 +1,7 @@
 const { sendErrorResponse } = require("../../helpers/send_error_response")
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const jwtService = require("../../service/jwt.service");
 
 
 module.exports = async (req, res, next) => {
@@ -17,7 +18,8 @@ module.exports = async (req, res, next) => {
             return res.status(401).send({message: "bearer not found"})
         }
 
-        const decodedPayload = jwt.verify(token, config.get("tokenKey"));
+        // const decodedPayload = jwt.verify(token, config.get("tokenKey"));
+        const decodedPayload = await jwtService.verifyAccessToken();
         // if (!decodedPayload.is_active){
         //     return res.status(403).send({message: "not active user"})
         // }

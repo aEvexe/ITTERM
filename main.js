@@ -1,10 +1,12 @@
 const express = require('express');
 const config = require('config');
+const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 const indexRouter = require("./routes/index.routes")
 const PORT = config.get('PORT') || 3030;
 
 const app = express()
+app.use(cookieParser())
 app.use(express.json())
 app.use("/api", indexRouter)
 
