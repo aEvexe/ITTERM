@@ -32,9 +32,31 @@ class JwtService{
     }
 }
 
-module.exports = new JwtService(
+const authorJwtService = new JwtService(
     config.get("access_key"),
     config.get("refresh_key"),
     config.get("access_time"),
     config.get("refresh_key")
 )
+
+const adminJwtService = new JwtService(
+    config.get("adminAccess_key"),
+    config.get("adminRefresh_key"),
+    config.get("adminAccess_time"),
+    config.get("adminRefresh_time")
+)
+
+const userJwtService = new JwtService(
+    config.get("userAccessKey"),
+    config.get("userRefreshKey"),
+    config.get("userAccessTime"),
+    config.get("userRefteshTime")
+)
+
+
+
+module.exports = {
+    authorJwtService,
+    adminJwtService,
+    userJwtService
+}

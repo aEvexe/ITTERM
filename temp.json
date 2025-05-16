@@ -1,0 +1,26 @@
+{
+  "level": "\u001b[32minfo\u001b[39m",
+  "message": "POST /api/authors/log 201 64ms",
+  "meta": {
+    "req": {
+      "headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip, deflate, br",
+        "connection": "keep-alive",
+        "content-length": "71",
+        "content-type": "application/json",
+        "cookie": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjQ3YTQ1MTBlZjg3ZWVmNDdjMWExNiIsImlzX2FjdGl2ZSI6ZmFsc2UsImlzX2V4cGVydCI6ZmFsc2UsImlhdCI6MTc0NzM5NDE3OCwiZXhwIjoxNzQ3NDgwNTc4fQ.kRE-AH0fekCXqXbwkeCBvRkHDOq27JfmfsPHiim2oIo",
+        "host": "localhost:3000",
+        "postman-token": "fe65c996-bde1-4fbb-8410-d04c7835973f",
+        "user-agent": "PostmanRuntime/7.43.4"
+      },
+      "httpVersion": "1.1",
+      "method": "POST",
+      "originalUrl": "/api/authors/log",
+      "query": {},
+      "url": "/api/authors/log"
+    },
+    "res": { "statusCode": 201 },
+    "responseTime": 64
+  }
+}

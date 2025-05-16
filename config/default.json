@@ -11,16 +11,31 @@
     "access_time":"15h",
     "refresh_time":"15d",
     "cookie_refresh_time": 1296000000,
+    "smtp_password": "bfhz hhfu ypqk dzre",
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_user": "beknazarovjaloliddin4@gmail.com",
+    "api_url": "http://localhost:3000",
 
     "adminAccess_key": "accessAdminKeyJwt",
     "adminRefresh_key": "accessAdminKeyJwt",
     "adminAccess_time": "15h",
     "adminRefresh_time": "15d",
     "admin_cookie_refresh_time": 1296000000,
+    "admin_smtp_password": "ohin kliw udky rxai",
+    "admin_smtp_host": "smtp.gmail.com",
+    "admin_smtp_port": 587,
+    "admin_smtp_user": "beknazarovjaloliddin721@gmail.com",
+    "admin_api_url": "http://localhost:3000",
 
     "userAccessKey": "userAccessKeyJwt",
     "userRefreshKey": "userAccessKeyJwt", 
     "userAccessTime": "1d", 
     "userRefteshTime": "15d",
-    "user_cookie_refresh_time": 1296000000
+    "user_cookie_refresh_time": 1296000000,
+    "user_smtp_password": "ohin kliw udky rxai",
+    "user_smtp_host": "smtp.gmail.com",
+    "user_smtp_port": 587,
+    "user_smtp_user": "beknazarovjaloliddin721@gmail.com",
+    "user_api_url": "http://localhost:3000"
 }

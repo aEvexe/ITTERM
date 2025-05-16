@@ -64,6 +64,9 @@ const authorSchema = new Schema({
     },
     refresh_token:{
         type: String,
+    },
+    activation_link:{
+        type: String
     }
 });
  

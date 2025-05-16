@@ -1,6 +1,8 @@
 const { sendErrorResponse } = require("../../helpers/send_error_response")
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const { userJwtService } = require("../../service/jwt.service");
+
 
 
 module.exports = async (req, res, next) => {
@@ -18,7 +20,7 @@ module.exports = async (req, res, next) => {
         }
 
         // const decodedPayload = jwt.verify(token, config.get("userTokenKey"));
-        const decodedPayload = await jwtService.verifyAccessToken();
+        const decodedPayload = await userJwtService.verifyAccessToken();
 
 
         req.userAuth = decodedPayload;

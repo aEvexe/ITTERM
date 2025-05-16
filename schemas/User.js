@@ -14,11 +14,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    info: {
-        type: String,
-        required: true,
-    },
-    photo: {
+    phone: {
         type: String,
         required: true,
     },
