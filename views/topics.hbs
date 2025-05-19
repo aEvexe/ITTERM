@@ -1,0 +1,14 @@
+<h3>Topics</h3>
+<ul>
+  {{#each items}}
+    <li>
+      <strong>Author ID:</strong> {{author_id}} <br/>
+      <strong>Topic:</strong> {{topic_text}} <br/>
+      <strong>Like:</strong> {{topic_like}} <br/>
+      <strong>Created:</strong> {{created_date}} <br/>
+      <strong>Updated:</strong> {{updated_date}} <br/>
+      <strong>Checked:</strong> {{is_checked}} <br/>
+      <strong>Approved:</strong> {{is_approved}} <br/>
+    </li>
+  {{/each}}
+</ul>

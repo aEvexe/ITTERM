@@ -1,0 +1,13 @@
+<h3>Mualliflar</h3>
+<ul>
+  {{#each items}}
+    <li>
+      <strong>{{first_name}} {{last_name}}</strong>
+      <br />
+      Email: {{email}} <br />
+      Phone: {{phone}} <br />
+      Gender: {{gender}} <br />
+      Expert: {{#if is_expert}}✅{{else}}❌{{/if}}
+    </li>
+  {{/each}}
+</ul>

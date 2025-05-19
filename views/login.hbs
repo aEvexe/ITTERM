@@ -1,0 +1,46 @@
+<h3>login</h3>
+
+<form id="loginForm">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" id="email" name="email" class="form-control" aria-describedby="emailHelp" value="nimadir1@gmail.com">
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" id="password" name="password" class="form-control" value="12345678910">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+  const login = document.getElementById("loginForm");
+
+  login.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    try {
+      const response = await fetch('http://localhost:3000/api/authors/log', {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          password
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Login successfully", data);
+      } else {
+        console.log('Login failed');
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  });
+</script>

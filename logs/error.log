@@ -35,3 +35,27 @@
 2025-05-16T11:04:31.511Z [ITTERM] error: oddiy log emas
 2025-05-16T11:10:44.793Z [ITTERM] error: oddiy log emas
 2025-05-16T11:46:30.522Z [ITTERM] error: Expected ',' or '}' after property value in JSON at position 42 (line 3 column 5)
+2025-05-19T10:54:55.443Z [ITTERM] error: unhandledRejection: The "paths[0]" argument must be of type string. Received undefined
+TypeError [ERR_INVALID_ARG_TYPE]: The "paths[0]" argument must be of type string. Received undefined
+    at Object.resolve (node:path:199:9)
+    at ExpressHandlebars.<anonymous> (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:103:29)
+    at Generator.next (<anonymous>)
+    at C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:13:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:9:12)
+    at ExpressHandlebars.getTemplate (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:102:16)
+    at ExpressHandlebars.<anonymous> (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:144:22)
+    at Generator.next (<anonymous>)
+    at C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:13:71
+2025-05-19T10:54:56.858Z [ITTERM] error: unhandledRejection: The "paths[0]" argument must be of type string. Received undefined
+TypeError [ERR_INVALID_ARG_TYPE]: The "paths[0]" argument must be of type string. Received undefined
+    at Object.resolve (node:path:199:9)
+    at ExpressHandlebars.<anonymous> (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:103:29)
+    at Generator.next (<anonymous>)
+    at C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:13:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:9:12)
+    at ExpressHandlebars.getTemplate (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:102:16)
+    at ExpressHandlebars.<anonymous> (C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:144:22)
+    at Generator.next (<anonymous>)
+    at C:\fullstack\cruds\new_mongo\node_modules\express-handlebars\dist\express-handlebars.js:13:71

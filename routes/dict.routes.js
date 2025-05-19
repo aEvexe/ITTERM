@@ -4,7 +4,7 @@ const authorJwtGuard = require('../middleware/guards/author-jwt.guard');
 
 const router = require('express').Router();
 
-router.post("/", authorJwtGuard, authorExpertGuard, addDict)
+router.post("/", /*authorJwtGuard*/ /*authorExpertGuard*/ addDict)
 router.get("/all", getAll)
 router.get("/:id", findById)
 router.get("/letter/:letter", findByLetter)
