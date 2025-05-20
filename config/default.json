@@ -37,5 +37,17 @@
     "user_smtp_host": "smtp.gmail.com",
     "user_smtp_port": 587,
     "user_smtp_user": "beknazarovjaloliddin721@gmail.com",
-    "user_api_url": "http://localhost:3000"
+    "user_api_url": "http://localhost:3000",
+
+    "dictAccess_key":"accessTokenSecretKeysdfsdf",
+    "dictRefresh_key":"accessTokenSecretKeysdfsdf",
+    "dictAccess_time":"15h",
+    "dictRefresh_time":"15d",
+    "dict_cookie_refresh_time": 1296000000,
+
+    "topicAccessKey":"accessTokenSecretKeysdfsdf",
+    "topicRefreshKey":"accessTokenSecretKeysdfsdf",
+    "topicAccessTime":"15h",
+    "topicRefreshTime":"15d",
+    "topic_cookie_refresh_time": 1296000000
 }

@@ -1,34 +1,24 @@
-const { sendErrorResponse } = require("../../helpers/send_error_response")
-const jwt = require('jsonwebtoken');
-const config = require('config');
-const jwtService = require("../../service/jwt.service");
-
+const { sendErrorResponse } = require("../../helpers/send_error_response");
+const { authorJwtService } = require("../../service/jwt.service");
 
 module.exports = async (req, res, next) => {
     try {
         const authorization = req.headers.authorization;
-        if (!authorization){
-            return res.status(401).send({message: "authorized not found"})
+        if (!authorization) {
+            return res.status(401).send({ message: "authorized not found" });
         }
 
-        const bearer = authorization.split(" ")[0]
-        const token = authorization.split(" ")[1]
+        const [bearer, token] = authorization.split(" ");
 
-        if(bearer !== "Bearer" || !token){
-            return res.status(401).send({message: "bearer not found"})
+        if (bearer !== "Bearer" || !token) {
+            return res.status(401).send({ message: "bearer not found" });
         }
 
-        // const decodedPayload = jwt.verify(token, config.get("tokenKey"));
-        const decodedPayload = await jwtService.verifyAccessToken();
-        // if (!decodedPayload.is_active){
-        //     return res.status(403).send({message: "not active user"})
-        // }
-
+        const decodedPayload = await authorJwtService.verifyAccessToken(token);
 
         req.author = decodedPayload;
-        console.log(req)
-        next()
+        next();
     } catch (error) {
-        sendErrorResponse(error, res)
+        sendErrorResponse(error, res);
     }
-}
+};

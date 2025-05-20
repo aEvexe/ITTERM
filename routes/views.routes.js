@@ -28,11 +28,11 @@ router.get("/authors", async (req, res) => {
 });
 
 router.get("/topics", async (req, res) => {
-    const items = await TopicModel.find().lean()
+    // const items = await TopicModel.find().lean()
   res.render(createViewPage("topics"), {
     title: "Maqolalar sahifasi",
     isTopic: true,
-    items,
+    // items,
   });
 });
 

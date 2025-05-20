@@ -1,6 +1,47 @@
-<h3>Lugatlar</h3>
-<ul>
-  {{#each items}}
-    <li><strong>{{term}}</strong> ({{letter}})</li>
-  {{/each}}
-</ul>
+<h3 style="text-align: center;">Dictionary</h3>
+
+<div class="container" style="display: flex; gap: 15px" id="container"></div>
+
+
+<script>
+ const container = document.getElementById("container")  
+
+async function getTopics() {
+  let accessToken = localStorage.getItem("accessToken")
+  try {
+     let respose = await fetch("http://localhost:3000/api/dict/all", {
+      method:"GET",
+      headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-type": "application/json",
+        },
+     })
+
+     let {message:data} = await respose.json()
+     let topics = ''
+     data.forEach((val) => {
+        topics+=`
+              <div class="card" style="width: 18rem;">
+                <img
+                  src="./css/images (2).jpeg"
+                  alt="..."
+                />
+                <div class="card-body">
+                  <p class="card-text">${val.text}</p>
+                  <button class="btn ${val.is_checked ? 'btn-success' : 'btn-danger'}"> 
+                      ${val.is_checked ? "Active" : "Passive"} 
+                  </button>
+                </div>
+              </div>
+             `
+     })
+     container.innerHTML = topics
+
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+getTopics()
+
+</script>
