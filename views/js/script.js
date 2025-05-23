@@ -9,7 +9,7 @@ function login() {
         method: "POST",
         headers: {
           "Content-type": "application/json",
-        },
+        }, 
         body: JSON.stringify({
           email,
           password,

@@ -2,7 +2,7 @@
     "PORT": 3000,
     "dbUri": "mongodb://localhost:27017/1234", 
     "tokenKey": "MySecrectTokenKey",
-    "tokenExpTime": "24h",
+    "tokenExpTime": "24h", 
     "adminTokenKey": "MySecrectTokenKeyAdmin",
     "userTokenKey": "MySecrectTokenKeyUser",
 

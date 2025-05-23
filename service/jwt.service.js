@@ -8,7 +8,7 @@ class JwtService {
     this.accessTime = accessTime;
     this.refreshTime = refreshTime;
   }
-
+ 
   generateTokens(payload) {
     const accessToken = jwt.sign(payload, this.accessKey, {
       expiresIn: this.accessTime,

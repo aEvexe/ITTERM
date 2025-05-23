@@ -3,7 +3,7 @@ const adminJwtGuard = require('../middleware/guards/admin-jwt.guard');
 const adminSelfGuard = require('../middleware/guards/admin-self.guard');
 
 const router = require('express').Router();
-
+ 
 router.post("/", addAdmin)
 router.post("/login", login)
 router.post("/logout", logout)

@@ -3,7 +3,7 @@ const Author = require('../schemas/Author');
 const { authorValidation } = require('../validation/author.validate');
 const bcrypt = require('bcrypt');
 const { authorJwtService } = require('../service/jwt.service');
-const uuid = require('uuid');
+const uuid = require('uuid'); 
 const { AuthMailServicee } = require('../service/mail.service');
 const config = require('config');
 
