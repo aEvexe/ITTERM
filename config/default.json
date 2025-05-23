@@ -1,5 +1,5 @@
 {
-    "PORT": 3000,
+    "PORT": 3003,
     "dbUri": "mongodb://localhost:27017/1234", 
     "tokenKey": "MySecrectTokenKey",
     "tokenExpTime": "24h", 
